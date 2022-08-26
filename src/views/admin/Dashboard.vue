@@ -12,5 +12,8 @@ export default {
 </script>
 
 <style>
-    
+    .dashboard {
+        text-align: left;
+        padding: 10px;
+    }
 </style>
