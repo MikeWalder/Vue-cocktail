@@ -2,7 +2,7 @@
     <div class="admin_navbar">
         <ul>
             <li><router-link to="/admin/users/add">Add user</router-link></li>
-            <li><router-link to="/admin/users/edit/12">Edit user</router-link></li>
+            <li><router-link to="/admin/users/edit/45">Edit user</router-link></li>
             <li><router-link to="/admin/users/index">Index user</router-link></li>
         </ul>
     </div>

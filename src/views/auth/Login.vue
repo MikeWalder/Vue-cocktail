@@ -31,6 +31,7 @@ export default {
         submission() {
             console.log(this.user)
             localStorage.setItem('token', 'vdkrgrgr4dsfd')
+            console.log(localStorage.getItem('token'))
             this.$router.push('/admin/dashboard')
         }
     }

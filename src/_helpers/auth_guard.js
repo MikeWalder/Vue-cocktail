@@ -8,5 +8,5 @@ export function authGuard(to){
         return true
     }
 
-    router.push('/admin/dashboard')
+    router.push('/login')
 }

@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import * as Public from '@/views/public'
-//import NotFound from '@/views/public/NotFound.vue'
 import * as Admin from '@/views/admin'
 
 import Login from '@/views/auth/Login.vue'
@@ -12,7 +11,7 @@ import { authGuard } from '@/_helpers/auth_guard'
 const routes = [
   {
     path: '/',
-    name: 'Public',
+    name: 'public',
     component: Public.PublicLayout,
     children: [
       { path: '/', name: 'Home', component: Public.Home },
@@ -25,8 +24,7 @@ const routes = [
   },
   {
     path: '/admin',
-    name: 'Admin',
-    /* beforeEnter: authGuard, */
+    name: 'admin',
     component: Admin.AdminLayout,
     children: [
       // donne : http://localhost:8080/admin/dashboard
@@ -50,9 +48,12 @@ const router = createRouter({
   routes
 })
 
+// Verrouillage de la partie admin avec vérification de la présence d'un token
 router.beforeEach((to, from, next) => {
-  if(to.matched[0].name === 'Admin'){
-    authGuard(); // Redirection automatique
+  console.log(to)
+  if(to.matched[0].name == 'admin'){
+    // Vérification de l'existence du token 
+    authGuard(); 
   }
   // if the user is not authenticated, `next` is called twice
   next()
