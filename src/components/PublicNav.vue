@@ -2,9 +2,9 @@
     <div id="nav">
         <img id="imgLogo" alt="Vue logo" src="../assets/logo.png">
         <nav>
-            <router-link to="/">Home</router-link> | 
-            <router-link to="/cocktail">Cocktails</router-link> | 
-            <router-link to="/contact">Contact</router-link> | 
+            <router-link to="/">Home</router-link>&ensp; | &ensp;
+            <router-link to="/cocktail">Cocktails</router-link>&ensp; | &ensp;
+            <router-link to="/contact">Contact</router-link>&ensp; | &ensp;
             <router-link to="/login">Admin</router-link>
         </nav>
     </div>

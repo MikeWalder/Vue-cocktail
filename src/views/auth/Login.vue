@@ -4,7 +4,7 @@
             <h2>Connexion</h2>
         </div>
         
-        <form @submit.prevent="submission">
+        <form @submit.prevent="loginAccount">
             <div class="form_group">
                 <label for="input_pseudo">Pseudo : </label>
                 <input type="text" id="input_pseudo" v-model="user.pseudo">
@@ -14,11 +14,17 @@
                 <input type="text" id="input_password" v-model="user.password">
             </div>
             <button type="submit" class="btn_login">Se connecter</button>
+            <div class="res_form">
+                <div v-if="this.getDatas !== null">
+                    {{ getDatas.status }}
+                </div>
+            </div>
         </form>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name: 'Login', 
     data() {
@@ -26,15 +32,40 @@ export default {
             user: {
                 pseudo: '',
                 password: '',
-            }
+            },
+            getDatas: null,
         }
     },
     methods: {
-        submission() {
-            console.log(this.user)
-            localStorage.setItem('token', 'vdkrgrgr4dsfd')
-            console.log(localStorage.getItem('token'))
-            this.$router.push('/admin/dashboard')
+        loginAccount() {
+        const rand = () => {
+            return Math.random().toString(36).substr(2);
+        };
+
+        const token = () => {
+            return rand() + rand();
+        };
+
+        // console.log(this.user)
+        
+
+        const path = 'http://localhost:5000/login';
+        axios.get(path)
+            .then((res) => {
+                this.getDatas = res.data;
+                console.log(this.getDatas)
+                localStorage.setItem('token', token())
+                console.log(localStorage.getItem('token'))
+                console.log(this.user.password)
+                setTimeout(() => {this.$router.push('/admin/dashboard')}, 1000); 
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+
+        /* fetch('http://localhost:5000/login')
+        .then(data => console.log(data))
+        .catch(err => console.log(err)) */
         }
     }
 }
@@ -74,5 +105,12 @@ export default {
         font-size: 18px;
         border-radius: 5px;
         box-shadow: 5px 5px 10px black;
+    }
+
+    .res_form {
+        padding-top: 30px;
+        font-size: 22px;
+        font-weight: bold;
+        color: green;
     }
 </style>
